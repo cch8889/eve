@@ -3,6 +3,13 @@ import { Storage } from "@google-cloud/storage";
 import crypto from "crypto";
 import path from "path";
 import { fileURLToPath } from "url";
+import fs from "fs/promises";
+
+const ADMIN_SECRET = process.env.ADMIN_SECRET;
+
+if (!ADMIN_SECRET) {
+  throw new Error("ADMIN_SECRET environment variable is required");
+}
 
 const app = express();
 
@@ -161,6 +168,136 @@ app.post("/api/rsvp", async (req, res) => {
     });
   }
 });
+
+// --------------------------------------------------
+// Admin - Export RSVPs
+// --------------------------------------------------
+
+app.post("/api/admin/export-rsvps", async (req, res) => {
+  try {
+    const { secret } = req.body;
+
+    // --------------------------
+    // Authentication
+    // --------------------------
+
+    if (!secret || secret !== ADMIN_SECRET) {
+      return res.status(401).json({
+        error: "Unauthorised",
+      });
+    }
+
+    // --------------------------
+    // Create local RSVP directory
+    // --------------------------
+
+    const rsvpDirectory = path.join(__dirname, "RSVPs");
+
+    await fs.mkdir(rsvpDirectory, {
+      recursive: true,
+    });
+
+    // --------------------------
+    // Get every RSVP JSON
+    // --------------------------
+
+    const [files] = await bucket.getFiles({
+      prefix: "rsvps/",
+    });
+
+    const jsonFiles = files.filter((file) => file.name.endsWith(".json"));
+
+    const rsvps = [];
+
+    // --------------------------
+    // Download JSON files
+    // --------------------------
+
+    for (const file of jsonFiles) {
+      const [contents] = await file.download();
+
+      const rsvp = JSON.parse(contents.toString("utf8"));
+
+      rsvps.push(rsvp);
+
+      const localFilename = path.basename(file.name);
+
+      const localPath = path.join(rsvpDirectory, localFilename);
+
+      await fs.writeFile(localPath, JSON.stringify(rsvp, null, 2), "utf8");
+    }
+
+    // --------------------------
+    // Sort by family name
+    // --------------------------
+
+    rsvps.sort((a, b) =>
+      (a.familyName || "").localeCompare(b.familyName || ""),
+    );
+
+    // --------------------------
+    // Build CSV
+    // --------------------------
+
+    const headers = [
+      "Family Name",
+      "Phone",
+      "Attending",
+      "Number Attending",
+      "Created",
+      "Last Updated",
+    ];
+
+    const rows = rsvps.map((rsvp) => [
+      rsvp.familyName,
+      rsvp.phone,
+      rsvp.attending ? "Yes" : "No",
+      rsvp.guestCount,
+      rsvp.createdAt,
+      rsvp.updatedAt,
+    ]);
+
+    const csv = [headers, ...rows]
+      .map((row) => row.map(csvEscape).join(","))
+      .join("\n");
+
+    // --------------------------
+    // Save CSV
+    // --------------------------
+
+    const csvPath = path.join(rsvpDirectory, "rsvps.csv");
+
+    await fs.writeFile(csvPath, csv, "utf8");
+
+    console.log(`Exported ${rsvps.length} RSVPs`);
+
+    // --------------------------
+    // Return CSV download
+    // --------------------------
+
+    return res.download(csvPath, "Eve-Funeral-RSVPs.csv");
+  } catch (error) {
+    console.error("Failed to export RSVPs:", error);
+
+    return res.status(500).json({
+      error: "Unable to export RSVPs",
+    });
+  }
+});
+
+// --------------------------------------------------
+// CSV helper
+// --------------------------------------------------
+
+function csvEscape(value) {
+  if (value === null || value === undefined) {
+    return "";
+  }
+
+  const stringValue = String(value);
+
+  return `"${stringValue.replace(/"/g, '""')}"`;
+}
 
 // --------------------------------------------------
 // Start

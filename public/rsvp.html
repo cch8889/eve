@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <title>RSVP - Eve Marie Blake</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#163422",
+              primaryLight: "#2d4b37",
+              gold: "#775a19",
+              goldLight: "#c9aa68",
+              textMain: "#1c1b1b",
+              textSoft: "#5e625f",
+              borderSoft: "#c2c8c0",
+              cream: "#fcf9f8",
+            },
+
+            fontFamily: {
+              serif: ["Libre Caslon Text", "serif"],
+              sans: ["Manrope", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+
+        background: radial-gradient(
+          circle at center,
+
+          #ffffff 0%,
+          #ffffff 60%,
+          #fefdfc 100%
+        );
+
+        overflow-x: hidden;
+      }
+
+      /* -----------------------------------------
+       Decorative vines
+    ------------------------------------------ */
+
+      .vine {
+        position: fixed;
+        pointer-events: none;
+        user-select: none;
+        z-index: 0;
+        object-fit: contain;
+      }
+
+      /* Bottom left */
+      .vine-left {
+        width: clamp(280px, 24vw, 420px);
+
+        left: 0;
+        bottom: 0;
+      }
+
+      /* Top right */
+      .vine-right {
+        width: clamp(260px, 22vw, 390px);
+
+        right: 0;
+        top: 0;
+      }
+
+      /* -----------------------------------------
+       Form styling
+    ------------------------------------------ */
+
+      .form-input {
+        width: 100%;
+        background: transparent;
+
+        border: 0;
+        border-bottom: 1px solid #919792;
+
+        padding: 10px 0;
+
+        font-family: "Manrope", sans-serif;
+        font-size: 16px;
+
+        color: #1c1b1b;
+
+        outline: none;
+
+        transition:
+          border-color 150ms ease,
+          box-shadow 150ms ease;
+      }
+
+      .form-input:focus {
+        border-bottom-color: #775a19;
+
+        box-shadow: none;
+        outline: none;
+
+        --tw-ring-shadow: 0 0 #0000;
+      }
+
+      .form-input::placeholder {
+        color: #7e8380;
+      }
+
+      .attendance-option {
+        border: 1px solid #d5d8d5;
+
+        transition:
+          border-color 150ms ease,
+          background-color 150ms ease;
+      }
+
+      .attendance-option:hover {
+        border-color: #775a19;
+      }
+
+      .attendance-option:has(input:checked) {
+        border-color: #775a19;
+        background: #fdfaf3;
+      }
+
+      /* -----------------------------------------
+       Success animation
+    ------------------------------------------ */
+
+      .success-box {
+        animation: fadeIn 300ms ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* -----------------------------------------
+       Tablet
+    ------------------------------------------ */
+
+      @media (max-width: 1000px) {
+        .vine-left {
+          width: 300px;
+
+          left: -40px;
+          bottom: -25px;
+        }
+
+        .vine-right {
+          width: 290px;
+
+          right: -40px;
+          top: -20px;
+        }
+      }
+
+      /* -----------------------------------------
+       Mobile
+    ------------------------------------------ */
+
+      @media (max-width: 650px) {
+        .vine-left {
+          width: 220px;
+
+          left: -35px;
+          bottom: -15px;
+
+          opacity: 0.9;
+        }
+
+        .vine-right {
+          width: 210px;
+
+          right: -30px;
+          top: -15px;
+
+          opacity: 0.9;
+        }
+      }
+      .top-nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+
+        width: 100%;
+
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+
+        border-bottom: 1px solid rgba(119, 90, 25, 0.15);
+      }
+
+      .top-nav-inner {
+        max-width: 680px;
+        margin: 0 auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        gap: 36px;
+
+        padding: 18px 20px;
+      }
+
+      .nav-link {
+        font-family: "Libre Caslon Text", serif;
+        font-size: 17px;
+
+        color: #5e625f;
+
+        text-decoration: none;
+
+        padding-bottom: 4px;
+
+        transition:
+          color 150ms ease,
+          border-color 150ms ease;
+      }
+
+      .nav-link:hover {
+        color: #163422;
+      }
+
+      .nav-link.active {
+        color: #163422;
+        border-bottom: 2px solid #775a19;
+      }
+    </style>
+  </head>
+
+  <body class="font-sans text-textMain">
+    <header class="top-nav">
+      <nav class="top-nav-inner">
+        <a href="/" class="nav-link"> Obituary </a>
+
+        <a href="/service.html" class="nav-link"> Service </a>
+
+        <a href="/" class="nav-link active"> RSVP </a>
+      </nav>
+    </header>
+    <main
+      class="relative min-h-screen flex items-center justify-center px-5 py-12 md:py-16 overflow-hidden"
+    >
+      <!-- --------------------------------------------------
+             Decorative vines
+        --------------------------------------------------- -->
+
+      <img src="/VineLeft.png" alt="" class="vine vine-left" />
+
+      <img src="/VineRight.png" alt="" class="vine vine-right" />
+
+      <!-- --------------------------------------------------
+             Main RSVP content
+        --------------------------------------------------- -->
+
+      <div class="w-full max-w-[680px] relative z-10">
+        <!-- Header -->
+
+        <header class="text-center mb-10 md:mb-12">
+          <p
+            class="font-serif italic text-[19px] md:text-[21px] text-textSoft mb-3"
+          >
+            Celebrating the life of
+          </p>
+
+          <h1
+            class="font-serif text-primary text-[38px] leading-tight md:text-[52px] mb-5"
+          >
+            Eve Marie Blake
+          </h1>
+
+          <!-- Gold divider -->
+
+          <div class="flex items-center justify-center gap-3 mb-5">
+            <div class="h-px w-14 bg-goldLight"></div>
+
+            <div class="w-[7px] h-[7px] rounded-full bg-gold"></div>
+
+            <div class="h-px w-14 bg-goldLight"></div>
+          </div>
+
+          <p class="text-[16px] md:text-[17px] text-textSoft leading-7">
+            Thursday, 27th August 2026
+          </p>
+
+          <p class="text-[15px] text-textSoft mt-1">
+            Please let us know if you will be joining us.
+          </p>
+        </header>
+
+        <!-- --------------------------------------------------
+                 RSVP card
+            --------------------------------------------------- -->
+
+        <section
+          class="bg-white/95 border border-goldLight px-7 py-8 md:px-12 md:py-11 shadow-[0_8px_30px_rgba(0,0,0,0.04)]"
+        >
+          <form id="rsvpForm" class="space-y-8">
+            <!-- Name -->
+
+            <div>
+              <label
+                for="familyName"
+                class="block text-[12px] font-bold tracking-[0.13em] text-gold mb-2"
+              >
+                NAME / FAMILY NAME
+              </label>
+
+              <input
+                class="form-input"
+                id="familyName"
+                name="familyName"
+                type="text"
+                placeholder="e.g. Frank Herrera"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <!-- Phone -->
+
+            <div>
+              <label
+                for="phone"
+                class="block text-[12px] font-bold tracking-[0.13em] text-gold mb-2"
+              >
+                PHONE NUMBER
+              </label>
+
+              <input
+                class="form-input"
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="e.g. 07700 900123"
+                autocomplete="tel"
+                required
+              />
+
+              <p class="text-[12px] text-textSoft mt-2">
+                In case we need to contact you about the arrangements.
+              </p>
+            </div>
+
+            <!-- Attendance -->
+
+            <fieldset>
+              <legend
+                class="block text-[12px] font-bold tracking-[0.13em] text-gold mb-4"
+              >
+                WILL YOU BE ATTENDING?
+              </legend>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <label
+                  class="attendance-option flex items-center gap-3 cursor-pointer p-4"
+                >
+                  <input
+                    type="radio"
+                    name="attending"
+                    value="yes"
+                    class="text-gold border-borderSoft focus:ring-gold"
+                    required
+                  />
+
+                  <span class="text-[15px]"> Yes, we will attend </span>
+                </label>
+
+                <label
+                  class="attendance-option flex items-center gap-3 cursor-pointer p-4"
+                >
+                  <input
+                    type="radio"
+                    name="attending"
+                    value="no"
+                    class="text-gold border-borderSoft focus:ring-gold"
+                    required
+                  />
+
+                  <span class="text-[15px]"> Unable to attend </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- Guest count -->
+
+            <div id="guestSection">
+              <label
+                for="guestCount"
+                class="block text-[12px] font-bold tracking-[0.13em] text-gold mb-2"
+              >
+                NUMBER ATTENDING
+              </label>
+
+              <select class="form-input" id="guestCount" name="guestCount">
+                <option value="1">1 person</option>
+
+                <option value="2">2 people</option>
+
+                <option value="3">3 people</option>
+
+                <option value="4">4 people</option>
+
+                <option value="5">5 people</option>
+
+                <option value="6">6 people</option>
+
+                <option value="7">7 people</option>
+
+                <option value="8">8 people</option>
+
+                <option value="9">9 people</option>
+
+                <option value="10">10 people</option>
+              </select>
+            </div>
+
+            <!-- Submit -->
+
+            <div class="pt-3">
+              <button
+                id="submitButton"
+                type="submit"
+                class="w-full md:w-auto md:min-w-[220px] md:mx-auto md:block bg-primary hover:bg-primaryLight text-white px-10 py-4 text-[13px] font-bold tracking-[0.12em] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                CONFIRM RSVP
+              </button>
+            </div>
+
+            <!-- Error -->
+
+            <p
+              id="errorMessage"
+              class="hidden text-center text-sm text-red-700"
+            ></p>
+          </form>
+
+          <!-- --------------------------------------------------
+                     Success state
+                --------------------------------------------------- -->
+
+          <div id="successMessage" class="success-box hidden text-center py-8">
+            <div class="flex items-center justify-center gap-3 mb-6">
+              <div class="h-px w-12 bg-goldLight"></div>
+
+              <div class="w-[7px] h-[7px] rounded-full bg-gold"></div>
+
+              <div class="h-px w-12 bg-goldLight"></div>
+            </div>
+
+            <h2 class="font-serif text-primary text-[28px] mb-3">Thank you</h2>
+
+            <p
+              id="successText"
+              class="text-textSoft leading-7 max-w-sm mx-auto"
+            >
+              Your RSVP has been received.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const form = document.getElementById("rsvpForm");
+
+      const guestSection = document.getElementById("guestSection");
+
+      const guestCount = document.getElementById("guestCount");
+
+      const submitButton = document.getElementById("submitButton");
+
+      const errorMessage = document.getElementById("errorMessage");
+
+      const successMessage = document.getElementById("successMessage");
+
+      const successText = document.getElementById("successText");
+
+      // --------------------------------------------------
+      // Attendance selection
+      // --------------------------------------------------
+
+      document.querySelectorAll('input[name="attending"]').forEach((radio) => {
+        radio.addEventListener("change", () => {
+          const attending = radio.value === "yes";
+
+          if (attending) {
+            guestSection.classList.remove("hidden");
+          } else {
+            guestSection.classList.add("hidden");
+          }
+        });
+      });
+
+      // --------------------------------------------------
+      // Submit RSVP
+      // --------------------------------------------------
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        errorMessage.classList.add("hidden");
+
+        const familyName = document.getElementById("familyName").value.trim();
+
+        const phone = document.getElementById("phone").value.trim();
+
+        const attendanceInput = document.querySelector(
+          'input[name="attending"]:checked',
+        );
+
+        if (!attendanceInput) {
+          showError("Please let us know whether you will be attending.");
+
+          return;
+        }
+
+        const attending = attendanceInput.value === "yes";
+
+        const body = {
+          familyName,
+
+          phone,
+
+          attending,
+
+          guestCount: attending ? Number(guestCount.value) : 0,
+        };
+
+        try {
+          submitButton.disabled = true;
+
+          submitButton.textContent = "SENDING...";
+
+          const response = await fetch("/api/rsvp", {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify(body),
+          });
+
+          const result = await response.json();
+
+          if (!response.ok) {
+            throw new Error(result.error || "Unable to submit RSVP.");
+          }
+
+          form.classList.add("hidden");
+
+          successMessage.classList.remove("hidden");
+
+          if (attending) {
+            successText.textContent =
+              "Thank you. We look forward to seeing you as we remember and celebrate Eve.";
+          } else {
+            successText.textContent =
+              "Thank you for letting us know. Your RSVP has been received.";
+          }
+        } catch (error) {
+          showError(error.message || "Something went wrong. Please try again.");
+
+          submitButton.disabled = false;
+
+          submitButton.textContent = "CONFIRM RSVP";
+        }
+      });
+
+      // --------------------------------------------------
+      // Error handling
+      // --------------------------------------------------
+
+      function showError(message) {
+        errorMessage.textContent = message;
+
+        errorMessage.classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>
