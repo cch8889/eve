@@ -27,17 +27,24 @@ if (!BUCKET_NAME) {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const SERVICE_ACCOUNT_KEY = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
+let storage;
 
-if (!SERVICE_ACCOUNT_KEY) {
-  throw new Error(
-    "GOOGLE_SERVICE_ACCOUNT_KEY environment variable is required",
-  );
+if (process.env.GOOGLE_SERVICE_ACCOUNT_KEY) {
+  // Local development using JSON key
+
+  storage = new Storage({
+    keyFilename: path.resolve(
+      __dirname,
+
+      process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
+    ),
+  });
+} else {
+  // Cloud Run uses its attached service account
+
+  storage = new Storage();
 }
 
-const storage = new Storage({
-  keyFilename: path.resolve(__dirname, SERVICE_ACCOUNT_KEY),
-});
 const bucket = storage.bucket(BUCKET_NAME);
 
 app.use(express.json());
