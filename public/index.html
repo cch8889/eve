@@ -424,12 +424,10 @@
         }
 
         .vine-right {
-          width: 210px;
+          width: clamp(260px, 22vw, 390px);
 
-          right: -50px;
+          right: 0;
           top: 52px;
-
-          opacity: 0.9;
         }
 
         .content {
@@ -494,8 +492,8 @@
     <header class="top-nav">
       <nav class="top-nav-inner">
         <a href="/" class="nav-link active"> Service </a>
-        <a href="/Obituary.html" class="nav-link"> Order of Service </a>
         <a href="/rsvp.html" class="nav-link"> RSVP </a>
+        <a href="/service" class="nav-link"> Order of Service </a>
       </nav>
     </header>
 
@@ -590,7 +588,7 @@
       <!-- RSVP -->
 
       <div class="rsvp-wrapper">
-        <a href="/OOS.html" class="rsvp-button"> ORDER OF SERVICE </a>
+        <a href="/rsvp.html" class="rsvp-button"> RSVP </a>
       </div>
     </main>
   </body>

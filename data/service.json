@@ -1,0 +1,40 @@
+{
+  "title": "Order of Service",
+  "items": [
+    {
+      "time": "10:00 AM",
+      "title": "Lorem Ipsum",
+      "description": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "time": "10:10 AM",
+      "title": "Dolor Sit Amet",
+      "description": "Consectetur adipiscing elit"
+    },
+    {
+      "time": "10:20 AM",
+      "title": "Consectetur Adipiscing",
+      "description": "Lorem ipsum dolor sit amet",
+      "italic": true
+    },
+    {
+      "time": "10:30 AM",
+      "title": "Lorem Ipsum Dolor",
+      "description": "Sed do eiusmod tempor incididunt"
+    },
+    {
+      "time": "10:45 AM",
+      "title": "Adipiscing Elit",
+      "description": "Ut labore et dolore magna aliqua"
+    },
+    {
+      "time": "11:00 AM",
+      "title": "Eiusmod Tempor",
+      "description": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "time": "11:15 AM",
+      "title": "Lorem Ipsum"
+    }
+  ]
+}

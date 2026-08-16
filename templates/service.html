@@ -1,0 +1,319 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Order of Service - Eve Marie Blake</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#163422",
+              "primary-container": "#2d4b37",
+              secondary: "#775a19",
+              background: "#ffffff",
+              surface: "#ffffff",
+              "surface-variant": "#e5e2e1",
+              "on-surface": "#1c1b1b",
+              "on-surface-variant": "#424843",
+            },
+
+            spacing: {
+              gutter: "24px",
+              "section-gap": "80px",
+              "margin-mobile": "20px",
+              "margin-desktop": "64px",
+              "container-max": "1200px",
+            },
+
+            fontFamily: {
+              body: ["Manrope"],
+              serif: ["Libre Caslon Text"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .botanical-overlay {
+        mix-blend-mode: multiply;
+        opacity: 0.15;
+        pointer-events: none;
+      }
+
+      .top-nav {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-bottom: 1px solid rgba(119, 90, 25, 0.15);
+      }
+
+      .top-nav-inner {
+        max-width: 680px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 36px;
+        padding: 18px 20px;
+      }
+
+      .nav-link {
+        font-family: "Libre Caslon Text", serif;
+        font-size: 17px;
+        color: #5e625f;
+        text-decoration: none;
+        padding-bottom: 4px;
+        transition:
+          color 150ms ease,
+          border-color 150ms ease;
+      }
+
+      .nav-link:hover {
+        color: #163422;
+      }
+
+      .nav-link.active {
+        color: #163422;
+        border-bottom: 2px solid #775a19;
+      }
+
+      @media (max-width: 650px) {
+        .top-nav-inner {
+          gap: 24px;
+          padding: 15px 16px;
+        }
+
+        .nav-link {
+          font-size: 15px;
+        }
+      }
+
+      .portrait-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .portrait-frame {
+        width: 100%;
+        max-width: 390px;
+
+        margin: 0 auto 38px;
+
+        padding: 8px;
+
+        border: 1px solid #c9aa68;
+        background: white;
+
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+      }
+
+      .portrait-frame img {
+        display: block;
+
+        width: 100%;
+        height: auto;
+      }
+
+      .portrait-section h1 {
+        font-family: "Libre Caslon Text", serif;
+        font-weight: 400;
+
+        font-size: 48px;
+        line-height: 1.15;
+
+        color: #163422;
+
+        margin: 0 0 8px;
+      }
+
+      .portrait-section p {
+        font-family: "Libre Caslon Text", serif;
+
+        font-size: 20px;
+        font-style: italic;
+
+        color: #775a19;
+
+        margin: 0;
+      }
+
+      @media (max-width: 650px) {
+        .portrait-frame {
+          max-width: 300px;
+          margin-bottom: 32px;
+        }
+
+        .portrait-section h1 {
+          font-size: 36px;
+        }
+
+        .portrait-section p {
+          font-size: 18px;
+        }
+      }
+      .service-divider {
+        position: relative;
+
+        width: 100%;
+        height: 1px;
+
+        margin: 10px 0 30px;
+
+        background: rgba(201, 170, 104, 0.55);
+      }
+
+      .service-divider span {
+        position: absolute;
+
+        width: 7px;
+        height: 7px;
+
+        left: 50%;
+        top: 50%;
+
+        background: #775a19;
+
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      .vine {
+        position: fixed;
+
+        pointer-events: none;
+        user-select: none;
+
+        object-fit: contain;
+
+        z-index: 0;
+      }
+
+      .vine-left {
+        width: clamp(280px, 24vw, 420px);
+
+        left: 0;
+        bottom: 0;
+      }
+
+      .vine-right {
+        width: clamp(260px, 22vw, 390px);
+
+        right: 0;
+        top: 62px;
+      }
+
+      @media (max-width: 650px) {
+        .vine-left {
+          width: 220px;
+
+          left: -55px;
+          bottom: -25px;
+
+          opacity: 0.9;
+        }
+
+        .vine-right {
+          width: 210px;
+
+          right: -50px;
+          top: 52px;
+
+          opacity: 0.9;
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-background text-on-surface font-body min-h-screen relative overflow-x-hidden"
+  >
+    <img src="/VineLeft.png" alt="" class="vine vine-left" />
+
+    <img src="/VineRight.png" alt="" class="vine vine-right" />
+    <!-- Navigation -->
+    <header class="top-nav">
+      <nav class="top-nav-inner">
+        <a href="/" class="nav-link"> Service </a>
+        <a href="/rsvp.html" class="nav-link"> RSVP </a>
+        <a href="/service" class="nav-link active"> Order of Service </a>
+      </nav>
+    </header>
+
+    <main
+      class="relative z-10 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-gap flex flex-col items-center"
+    >
+      <!-- Portrait -->
+      <section class="portrait-section">
+        <div class="portrait-frame">
+          <img src="/ehb.png" alt="Eve Marie Blake" />
+        </div>
+      </section>
+
+      <!-- Order of Service -->
+      <h1
+        style="
+          font-family: &quot;Libre Caslon Text&quot;, serif;
+          font-size: 38px;
+          font-weight: 400;
+          line-height: 1.2;
+          color: #163422;
+          margin: 0 0 18px;
+        "
+      >
+        {{ service.title }}
+      </h1>
+      <section class="w-full max-w-3xl flex flex-col items-center">
+        <div class="service-divider" aria-hidden="true">
+          <span></span>
+        </div>
+        <div class="w-full flex flex-col gap-6 font-body-md text-body-md">
+          {% for item in service.items %}
+
+          <div
+            class="flex flex-col md:flex-row gap-2 md:gap-8 pb-4 {% if not loop.last %} border-b border-surface-variant {% endif %}"
+          >
+            <div class="md:w-1/3 text-secondary font-bold">{{ item.time }}</div>
+
+            <div class="md:w-2/3">
+              <p class="font-subheading text-subheading text-primary mb-1">
+                {{ item.title }}
+              </p>
+
+              {% if item.description %}
+
+              <p
+                class="text-on-surface-variant text-sm {% if item.italic %} italic {% endif %}"
+              >
+                {{ item.description }}
+              </p>
+
+              {% endif %}
+            </div>
+          </div>
+
+          {% endfor %}
+        </div>
+      </section>
+    </main>
+
+    <script src="/service.js"></script>
+  </body>
+</html>

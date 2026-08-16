@@ -4,6 +4,7 @@ import crypto from "crypto";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs/promises";
+import nunjucks from "nunjucks";
 
 const ADMIN_SECRET = process.env.ADMIN_SECRET;
 
@@ -26,6 +27,13 @@ if (!BUCKET_NAME) {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+nunjucks.configure(path.join(__dirname, "templates"), {
+  autoescape: true,
+  express: app,
+});
+
+app.set("view engine", "html");
 
 let storage;
 
@@ -315,6 +323,24 @@ function csvEscape(value) {
 
   return `"${stringValue.replace(/"/g, '""')}"`;
 }
+
+app.get("/service", async (req, res) => {
+  try {
+    const servicePath = path.join(__dirname, "data", "service.json");
+
+    const contents = await fs.readFile(servicePath, "utf8");
+
+    const service = JSON.parse(contents);
+
+    return res.render("service.html", {
+      service,
+    });
+  } catch (error) {
+    console.error("Failed to load service:", error);
+
+    return res.status(500).send("Unable to load service");
+  }
+});
 
 // --------------------------------------------------
 // Start

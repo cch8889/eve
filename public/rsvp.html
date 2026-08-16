@@ -84,7 +84,7 @@
         width: clamp(260px, 22vw, 390px);
 
         right: 0;
-        top: 0;
+        top: 62px;
       }
 
       /* -----------------------------------------
@@ -169,40 +169,39 @@
       @media (max-width: 1000px) {
         .vine-left {
           width: 300px;
-
           left: -40px;
           bottom: -25px;
         }
 
         .vine-right {
           width: 290px;
-
           right: -40px;
-          top: -20px;
+          top: 62px;
         }
       }
-
-      /* -----------------------------------------
-       Mobile
-    ------------------------------------------ */
 
       @media (max-width: 650px) {
         .vine-left {
           width: 220px;
-
-          left: -35px;
-          bottom: -15px;
-
+          left: -55px;
+          bottom: -25px;
           opacity: 0.9;
         }
 
         .vine-right {
           width: 210px;
-
-          right: -30px;
-          top: -15px;
-
+          right: -50px;
+          top: 52px;
           opacity: 0.9;
+        }
+
+        .top-nav-inner {
+          gap: 24px;
+          padding: 15px 16px;
+        }
+
+        .nav-link {
+          font-size: 15px;
         }
       }
       .top-nav {
@@ -254,6 +253,17 @@
         color: #163422;
         border-bottom: 2px solid #775a19;
       }
+
+      @media (max-width: 650px) {
+        .top-nav-inner {
+          gap: 24px;
+          padding: 15px 16px;
+        }
+
+        .nav-link {
+          font-size: 15px;
+        }
+      }
     </style>
   </head>
 
@@ -261,8 +271,8 @@
     <header class="top-nav">
       <nav class="top-nav-inner">
         <a href="/" class="nav-link"> Service </a>
-        <a href="/OOS.html" class="nav-link"> Order of Service </a>
         <a href="/rsvp.html" class="nav-link active"> RSVP </a>
+        <a href="/service" class="nav-link"> Order of Service </a>
       </nav>
     </header>
     <main
@@ -503,7 +513,9 @@
               Margaret’s Hospice.
             </p> -->
             <a
-              href="https://stmargaretshospice.beaconforms.com/form/4df20558%20%20"
+              href="https://stmargaretshospice.beaconforms.com/form/4df20558"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <button
                 style="
