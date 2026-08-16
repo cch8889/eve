@@ -27,7 +27,17 @@ if (!BUCKET_NAME) {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const storage = new Storage();
+const SERVICE_ACCOUNT_KEY = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
+
+if (!SERVICE_ACCOUNT_KEY) {
+  throw new Error(
+    "GOOGLE_SERVICE_ACCOUNT_KEY environment variable is required",
+  );
+}
+
+const storage = new Storage({
+  keyFilename: path.resolve(__dirname, SERVICE_ACCOUNT_KEY),
+});
 const bucket = storage.bucket(BUCKET_NAME);
 
 app.use(express.json());

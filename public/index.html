@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/icon.png" />
-    <title>Obituary - Eve Marie Blake</title>
+    <title>Service - Eve Marie Blake</title>
 
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 
@@ -25,6 +25,7 @@
               goldLight: "#c9aa68",
               textMain: "#1c1b1b",
               textSoft: "#5e625f",
+              borderSoft: "#c2c8c0",
             },
 
             fontFamily: {
@@ -56,9 +57,9 @@
         overflow-x: hidden;
       }
 
-      /* -----------------------------------------
+      /* --------------------------------------------------
            Navigation
-        ------------------------------------------ */
+        -------------------------------------------------- */
 
       .top-nav {
         position: sticky;
@@ -116,9 +117,9 @@
         border-bottom: 2px solid #775a19;
       }
 
-      /* -----------------------------------------
-           Vines
-        ------------------------------------------ */
+      /* --------------------------------------------------
+           Decorative vines
+        -------------------------------------------------- */
 
       .vine {
         position: fixed;
@@ -145,9 +146,9 @@
         top: 64px;
       }
 
-      /* -----------------------------------------
+      /* --------------------------------------------------
            Main content
-        ------------------------------------------ */
+        -------------------------------------------------- */
 
       .content {
         position: relative;
@@ -159,18 +160,51 @@
 
         margin: 0 auto;
 
-        padding: 48px 20px 80px;
+        padding: 42px 20px 70px;
       }
 
-      /* -----------------------------------------
+      /* --------------------------------------------------
+           Intro / date
+        -------------------------------------------------- */
+
+      .service-date {
+        text-align: center;
+
+        margin-bottom: 32px;
+      }
+
+      .service-date-label {
+        font-family: "Manrope", sans-serif;
+
+        font-size: 11px;
+        font-weight: 700;
+
+        letter-spacing: 0.14em;
+
+        color: #775a19;
+
+        text-transform: uppercase;
+
+        margin-bottom: 8px;
+      }
+
+      .service-date-value {
+        font-family: "Libre Caslon Text", serif;
+
+        font-size: 22px;
+
+        color: #163422;
+      }
+
+      /* --------------------------------------------------
            Portrait
-        ------------------------------------------ */
+        -------------------------------------------------- */
 
       .portrait-frame {
         width: 100%;
         max-width: 390px;
 
-        margin: 0 auto 18px;
+        margin: 0 auto 38px;
 
         padding: 8px;
 
@@ -188,23 +222,42 @@
         height: auto;
       }
 
-      .dates {
+      /* --------------------------------------------------
+           Heading
+        -------------------------------------------------- */
+
+      .memorial-heading {
+        text-align: center;
+      }
+
+      .memorial-heading .intro {
         font-family: "Libre Caslon Text", serif;
 
         font-style: italic;
 
-        font-size: 19px;
+        font-size: 20px;
 
-        color: #775a19;
+        color: #5e625f;
 
-        text-align: center;
-
-        margin-bottom: 52px;
+        margin: 0 0 10px;
       }
 
-      /* -----------------------------------------
+      .memorial-heading h1 {
+        font-family: "Libre Caslon Text", serif;
+
+        font-weight: 400;
+
+        font-size: 48px;
+        line-height: 1.15;
+
+        color: #163422;
+
+        margin: 0 0 22px;
+      }
+
+      /* --------------------------------------------------
            Divider
-        ------------------------------------------ */
+        -------------------------------------------------- */
 
       .divider {
         display: flex;
@@ -213,11 +266,11 @@
 
         gap: 12px;
 
-        margin: 0 auto 44px;
+        margin: 0 auto 36px;
       }
 
       .divider-line {
-        width: 64px;
+        width: 56px;
         height: 1px;
 
         background: #c9aa68;
@@ -232,43 +285,123 @@
         background: #775a19;
       }
 
-      /* -----------------------------------------
-           Story
-        ------------------------------------------ */
+      /* --------------------------------------------------
+           Details
+        -------------------------------------------------- */
 
-      .story {
-        max-width: 680px;
+      .details {
+        width: 100%;
+        max-width: 560px;
 
         margin: 0 auto;
 
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      .detail-section {
+        padding: 30px 24px;
+
         text-align: center;
+
+        border-top: 1px solid rgba(201, 170, 104, 0.48);
       }
 
-      .story h1 {
-        font-family: "Libre Caslon Text", serif;
-
-        font-size: 32px;
-        font-weight: 400;
-
-        color: #163422;
-
-        margin: 0 0 28px;
+      .detail-section:last-child {
+        border-bottom: 1px solid rgba(201, 170, 104, 0.48);
       }
 
-      .story p {
+      .detail-title {
         font-family: "Manrope", sans-serif;
 
-        font-size: 17px;
-        line-height: 1.85;
+        font-size: 12px;
+        font-weight: 700;
+
+        letter-spacing: 0.14em;
+
+        color: #775a19;
+
+        margin: 0 0 12px;
+      }
+
+      .detail-text {
+        font-family: "Manrope", sans-serif;
+
+        font-size: 16px;
+        line-height: 1.75;
 
         color: #5e625f;
 
-        margin: 0 0 24px;
+        margin: 0;
       }
 
-      /* -----------------------------------------
+      .map-link {
+        display: inline-block;
+
+        margin-top: 14px;
+
+        font-family: "Manrope", sans-serif;
+
+        font-size: 12px;
+        font-weight: 700;
+
+        letter-spacing: 0.12em;
+
+        text-transform: uppercase;
+
+        color: #775a19;
+
+        text-decoration: none;
+
+        transition: color 150ms ease;
+      }
+
+      .map-link:hover {
+        color: #163422;
+      }
+
+      /* --------------------------------------------------
+           RSVP
+        -------------------------------------------------- */
+
+      .rsvp-wrapper {
+        display: flex;
+        justify-content: center;
+
+        margin-top: 40px;
+      }
+
+      .rsvp-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        min-width: 220px;
+
+        padding: 16px 36px;
+
+        background: #163422;
+
+        color: white;
+
+        font-family: "Manrope", sans-serif;
+
+        font-size: 13px;
+        font-weight: 700;
+
+        letter-spacing: 0.12em;
+
+        text-decoration: none;
+
+        transition: background-color 150ms ease;
+      }
+
+      .rsvp-button:hover {
+        background: #2d4b37;
+      }
+
+      /* --------------------------------------------------
            Mobile
-        ------------------------------------------ */
+        -------------------------------------------------- */
 
       @media (max-width: 650px) {
         .top-nav-inner {
@@ -300,64 +433,53 @@
         }
 
         .content {
-          padding-top: 34px;
+          padding-top: 32px;
           padding-bottom: 60px;
+        }
+
+        .service-date {
+          /*
+                 * White backing ensures the date remains
+                 * readable even if foliage reaches behind it.
+                 */
+          position: relative;
+
+          z-index: 20;
+
+          width: fit-content;
+
+          margin: 0 auto 28px;
+
+          padding: 8px 18px;
+
+          background: rgba(255, 255, 255, 0.92);
+        }
+
+        .service-date-value {
+          font-size: 18px;
         }
 
         .portrait-frame {
           max-width: 300px;
+
+          margin-bottom: 32px;
         }
 
-        .dates {
-          font-size: 17px;
-
-          margin-bottom: 38px;
+        .memorial-heading .intro {
+          font-size: 18px;
         }
 
-        .story h1 {
-          font-size: 28px;
+        .memorial-heading h1 {
+          font-size: 36px;
+
+          margin-bottom: 20px;
         }
 
-        .story p {
-          font-size: 16px;
-          line-height: 1.8;
+        .detail-section {
+          padding: 26px 18px;
         }
-      }
-      .service-button-wrapper {
-        display: flex;
-        justify-content: center;
-        margin-top: 40px;
-      }
 
-      .service-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-
-        min-width: 220px;
-
-        padding: 16px 36px;
-
-        background: #163422;
-        color: white;
-
-        font-family: "Manrope", sans-serif;
-        font-size: 13px;
-        font-weight: 700;
-
-        letter-spacing: 0.12em;
-
-        text-decoration: none;
-
-        transition: background-color 150ms ease;
-      }
-
-      .service-button:hover {
-        background: #2d4b37;
-      }
-
-      @media (max-width: 650px) {
-        .service-button {
+        .rsvp-button {
           width: 100%;
         }
       }
@@ -365,32 +487,53 @@
   </head>
 
   <body class="font-sans text-textMain">
-    <!-- Navigation -->
+    <!-- --------------------------------------------------
+         Navigation
+    --------------------------------------------------- -->
 
     <header class="top-nav">
       <nav class="top-nav-inner">
-        <a href="/" class="nav-link active"> Obituary </a>
-
-        <a href="/service.html" class="nav-link"> Service </a>
-
+        <a href="/" class="nav-link active"> Service </a>
+        <a href="/Obituary.html" class="nav-link"> Order of Service </a>
         <a href="/rsvp.html" class="nav-link"> RSVP </a>
       </nav>
     </header>
 
-    <!-- Decorative vines -->
+    <!-- --------------------------------------------------
+         Decorative vines
+    --------------------------------------------------- -->
 
     <img src="/VineLeft.png" alt="" class="vine vine-left" />
 
     <img src="/VineRight.png" alt="" class="vine vine-right" />
 
+    <!-- --------------------------------------------------
+         Main content
+    --------------------------------------------------- -->
+
     <main class="content">
+      <!-- Date first -->
+
       <!-- Portrait -->
 
       <div class="portrait-frame">
         <img src="/ehb.png" alt="Eve Marie Blake" />
       </div>
+      <section class="service-date">
+        <div class="service-date-label">Service</div>
 
-      <p class="dates">1942 — 2026</p>
+        <div class="service-date-value">
+          Thursday, 27th August 2026 at 4:00pm
+        </div>
+      </section>
+
+      <!-- Heading -->
+
+      <section class="memorial-heading">
+        <p class="intro">Celebrating the life of</p>
+
+        <h1>Eve Marie Blake</h1>
+      </section>
 
       <!-- Divider -->
 
@@ -402,39 +545,52 @@
         <div class="divider-line"></div>
       </div>
 
-      <!-- Main obituary -->
+      <!-- Service / reception details -->
 
-      <section class="story">
-        <h1>Eve's Story</h1>
+      <section class="details">
+        <div class="detail-section">
+          <h2 class="detail-title">SERVICE TO BE HELD AT</h2>
 
-        <p>
-          Born in the quiet spring of 1942, Eve Marie Blake grew up with a
-          profound appreciation for literature and nature. She spent her early
-          years wandering the gardens of her childhood home, cultivating a
-          lifelong passion for botany that she would later share with her
-          children and grandchildren.
-        </p>
+          <p class="detail-text">
+            Yeovil Crematorium<br />
+            Bunford Lane<br />
+            Yeovil BA20 2EJ
+          </p>
 
-        <p>
-          Eve attended the State University, where she studied English
-          Literature. It was there she met her beloved husband, Thomas.
-          Together, they built a home filled with warmth, endless bookshelves,
-          and the smell of fresh baked bread. She was a dedicated teacher for
-          over thirty years, touching the lives of countless students with her
-          patience and wisdom.
-        </p>
+          <a
+            class="map-link"
+            href="https://www.google.com/maps/search/?api=1&query=Yeovil+Crematorium+Bunford+Lane+Yeovil+BA20+2EJ"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Map
+          </a>
+        </div>
 
-        <p>
-          In her later years, Eve found joy in watercolor painting, capturing
-          the delicate beauty of the flowers she so loved. Her gentle spirit,
-          sharp wit, and comforting presence are deeply missed, but her vibrant
-          memory continues to inspire us all.
-        </p>
+        <div class="detail-section">
+          <h2 class="detail-title">FOLLOWED BY RECEPTION AT</h2>
+
+          <p class="detail-text">
+            The Sherborne House<br />
+            Newland<br />
+            Sherborne DT9 3JG
+          </p>
+
+          <a
+            class="map-link"
+            href="https://www.google.com/maps/search/?api=1&query=The+Sherborne+House+Newland+Sherborne+DT9+3JG"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Map
+          </a>
+        </div>
       </section>
-      <div class="service-button-wrapper">
-        <a href="/service.html" class="service-button">
-          VIEW SERVICE DETAILS
-        </a>
+
+      <!-- RSVP -->
+
+      <div class="rsvp-wrapper">
+        <a href="/OOS.html" class="rsvp-button"> ORDER OF SERVICE </a>
       </div>
     </main>
   </body>

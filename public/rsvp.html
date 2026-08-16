@@ -260,11 +260,9 @@
   <body class="font-sans text-textMain">
     <header class="top-nav">
       <nav class="top-nav-inner">
-        <a href="/" class="nav-link"> Obituary </a>
-
-        <a href="/service.html" class="nav-link"> Service </a>
-
-        <a href="/" class="nav-link active"> RSVP </a>
+        <a href="/" class="nav-link"> Service </a>
+        <a href="/OOS.html" class="nav-link"> Order of Service </a>
+        <a href="/rsvp.html" class="nav-link active"> RSVP </a>
       </nav>
     </header>
     <main
@@ -308,12 +306,15 @@
             <div class="h-px w-14 bg-goldLight"></div>
           </div>
 
-          <p class="text-[16px] md:text-[17px] text-textSoft leading-7">
+          <!-- <p class="text-[16px] md:text-[17px] text-textSoft leading-7">
             Thursday, 27th August 2026
           </p>
+          <p class="text-[16px] md:text-[17px] text-textSoft leading-7">
+            at 4:00pm
+          </p> -->
 
-          <p class="text-[15px] text-textSoft mt-1">
-            Please let us know if you will be joining us.
+          <p class="text-[16px] md:text-[17px] text-textSoft leading-7">
+            Thursday, 27th August 2026 at 4:00pm
           </p>
         </header>
 
@@ -324,6 +325,9 @@
         <section
           class="bg-white/95 border border-goldLight px-7 py-8 md:px-12 md:py-11 shadow-[0_8px_30px_rgba(0,0,0,0.04)]"
         >
+          <p id="attMsg" class="text-textSoft" style="margin-bottom: 32px">
+            Kindly let us know if you are able to be join us.
+          </p>
           <form id="rsvpForm" class="space-y-8">
             <!-- Name -->
 
@@ -332,7 +336,7 @@
                 for="familyName"
                 class="block text-[12px] font-bold tracking-[0.13em] text-gold mb-2"
               >
-                NAME / FAMILY NAME
+                FULL NAME
               </label>
 
               <input
@@ -340,7 +344,7 @@
                 id="familyName"
                 name="familyName"
                 type="text"
-                placeholder="e.g. Frank Herrera"
+                placeholder="Please enter full name"
                 autocomplete="name"
                 required
               />
@@ -353,7 +357,7 @@
                 for="phone"
                 class="block text-[12px] font-bold tracking-[0.13em] text-gold mb-2"
               >
-                PHONE NUMBER
+                TELEPHONE NUMBER
               </label>
 
               <input
@@ -361,14 +365,10 @@
                 id="phone"
                 name="phone"
                 type="tel"
-                placeholder="e.g. 07700 900123"
+                placeholder="Please enter your telephone number"
                 autocomplete="tel"
                 required
               />
-
-              <p class="text-[12px] text-textSoft mt-2">
-                In case we need to contact you about the arrangements.
-              </p>
             </div>
 
             <!-- Attendance -->
@@ -392,7 +392,7 @@
                     required
                   />
 
-                  <span class="text-[15px]"> Yes, we will attend </span>
+                  <span class="text-[15px] text-textSoft"> Attending </span>
                 </label>
 
                 <label
@@ -406,7 +406,9 @@
                     required
                   />
 
-                  <span class="text-[15px]"> Unable to attend </span>
+                  <span class="text-[15px] text-textSoft">
+                    Unable to Attend
+                  </span>
                 </label>
               </div>
             </fieldset>
@@ -421,7 +423,11 @@
                 NUMBER ATTENDING
               </label>
 
-              <select class="form-input" id="guestCount" name="guestCount">
+              <select
+                class="form-input text-textSoft"
+                id="guestCount"
+                name="guestCount"
+              >
                 <option value="1">1 person</option>
 
                 <option value="2">2 people</option>
@@ -433,14 +439,6 @@
                 <option value="5">5 people</option>
 
                 <option value="6">6 people</option>
-
-                <option value="7">7 people</option>
-
-                <option value="8">8 people</option>
-
-                <option value="9">9 people</option>
-
-                <option value="10">10 people</option>
               </select>
             </div>
 
@@ -469,6 +467,20 @@
                 --------------------------------------------------- -->
 
           <div id="successMessage" class="success-box hidden text-center py-8">
+            <h2
+              style="margin-bottom: 0px"
+              class="font-serif text-primary text-[28px] mb-3"
+            >
+              Thank you
+            </h2>
+
+            <p
+              id="successText"
+              class="text-textSoft leading-7 max-w-sm mx-auto"
+              style="display: block; margin-top: 0px; margin-bottom: 16px"
+            >
+              Your RSVP has been received.
+            </p>
             <div class="flex items-center justify-center gap-3 mb-6">
               <div class="h-px w-12 bg-goldLight"></div>
 
@@ -476,15 +488,34 @@
 
               <div class="h-px w-12 bg-goldLight"></div>
             </div>
-
-            <h2 class="font-serif text-primary text-[28px] mb-3">Thank you</h2>
-
             <p
-              id="successText"
               class="text-textSoft leading-7 max-w-sm mx-auto"
+              style="display: block; margin-top: 24px"
             >
-              Your RSVP has been received.
+              Donations in memory of Eve may be made to <br />St Margaret’s
+              Hospice.
             </p>
+            <!-- <p
+              class="text-textSoft leading-7 max-w-sm mx-auto"
+              style="display: block; margin-top: 24px"
+            >
+              In lieu of flowers, donations in memory of Eve may be made to St
+              Margaret’s Hospice.
+            </p> -->
+            <a
+              href="https://stmargaretshospice.beaconforms.com/form/4df20558%20%20"
+            >
+              <button
+                style="
+                  margin-top: 24px;
+                  padding-left: 24px;
+                  padding-right: 24px;
+                "
+                class="w-full md:w-auto md:min-w-[220px] md:mx-auto md:block bg-primary hover:bg-primaryLight text-white px-10 py-4 text-[13px] font-bold tracking-[0.12em] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                Make a Donation
+              </button>
+            </a>
           </div>
         </section>
       </div>
@@ -504,6 +535,8 @@
       const successMessage = document.getElementById("successMessage");
 
       const successText = document.getElementById("successText");
+
+      const attMsg = document.getElementById("attMsg");
 
       // --------------------------------------------------
       // Attendance selection
@@ -559,7 +592,7 @@
         try {
           submitButton.disabled = true;
 
-          submitButton.textContent = "SENDING...";
+          submitButton.textContent = "SENDING";
 
           const response = await fetch("/api/rsvp", {
             method: "POST",
@@ -578,15 +611,15 @@
           }
 
           form.classList.add("hidden");
+          attMsg.classList.add("hidden");
 
           successMessage.classList.remove("hidden");
 
           if (attending) {
             successText.textContent =
-              "Thank you. We look forward to seeing you as we remember and celebrate Eve.";
+              "We look forward to seeing you as we remember and celebrate Eve.";
           } else {
-            successText.textContent =
-              "Thank you for letting us know. Your RSVP has been received.";
+            successText.innerHTML = "We have recieved your RSVP.";
           }
         } catch (error) {
           showError(error.message || "Something went wrong. Please try again.");

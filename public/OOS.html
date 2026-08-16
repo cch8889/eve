@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <title>Obituary - Eve Marie Blake</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#163422",
+              primaryLight: "#2d4b37",
+              gold: "#775a19",
+              goldLight: "#c9aa68",
+              textMain: "#1c1b1b",
+              textSoft: "#5e625f",
+            },
+
+            fontFamily: {
+              serif: ["Libre Caslon Text", "serif"],
+              sans: ["Manrope", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+
+        background: radial-gradient(
+          circle at center,
+          #ffffff 0%,
+          #ffffff 60%,
+          #fefdfc 100%
+        );
+
+        overflow-x: hidden;
+      }
+
+      /* -----------------------------------------
+           Navigation
+        ------------------------------------------ */
+
+      .top-nav {
+        position: sticky;
+        top: 0;
+
+        width: 100%;
+
+        z-index: 50;
+
+        background: rgba(255, 255, 255, 0.94);
+
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+
+        border-bottom: 1px solid rgba(119, 90, 25, 0.15);
+      }
+
+      .top-nav-inner {
+        max-width: 680px;
+
+        margin: 0 auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 36px;
+
+        padding: 18px 20px;
+      }
+
+      .nav-link {
+        font-family: "Libre Caslon Text", serif;
+
+        font-size: 17px;
+
+        color: #5e625f;
+
+        text-decoration: none;
+
+        padding-bottom: 4px;
+
+        transition:
+          color 150ms ease,
+          border-color 150ms ease;
+      }
+
+      .nav-link:hover {
+        color: #163422;
+      }
+
+      .nav-link.active {
+        color: #163422;
+
+        border-bottom: 2px solid #775a19;
+      }
+
+      /* -----------------------------------------
+           Vines
+        ------------------------------------------ */
+
+      .vine {
+        position: fixed;
+
+        pointer-events: none;
+        user-select: none;
+
+        object-fit: contain;
+
+        z-index: 0;
+      }
+
+      .vine-left {
+        width: clamp(280px, 24vw, 420px);
+
+        left: 0;
+        bottom: 0;
+      }
+
+      .vine-right {
+        width: clamp(260px, 22vw, 390px);
+
+        right: 0;
+        top: 64px;
+      }
+
+      /* -----------------------------------------
+           Main content
+        ------------------------------------------ */
+
+      .content {
+        position: relative;
+
+        z-index: 10;
+
+        width: 100%;
+        max-width: 760px;
+
+        margin: 0 auto;
+
+        padding: 48px 20px 80px;
+      }
+
+      /* -----------------------------------------
+           Portrait
+        ------------------------------------------ */
+
+      .portrait-frame {
+        width: 100%;
+        max-width: 390px;
+
+        margin: 0 auto 18px;
+
+        padding: 8px;
+
+        border: 1px solid #c9aa68;
+
+        background: white;
+
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+      }
+
+      .portrait-frame img {
+        display: block;
+
+        width: 100%;
+        height: auto;
+      }
+
+      .dates {
+        font-family: "Libre Caslon Text", serif;
+
+        font-style: italic;
+
+        font-size: 19px;
+
+        color: #775a19;
+
+        text-align: center;
+
+        margin-bottom: 52px;
+      }
+
+      /* -----------------------------------------
+           Divider
+        ------------------------------------------ */
+
+      .divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 12px;
+
+        margin: 0 auto 44px;
+      }
+
+      .divider-line {
+        width: 64px;
+        height: 1px;
+
+        background: #c9aa68;
+      }
+
+      .divider-dot {
+        width: 7px;
+        height: 7px;
+
+        border-radius: 50%;
+
+        background: #775a19;
+      }
+
+      /* -----------------------------------------
+           Story
+        ------------------------------------------ */
+
+      .story {
+        max-width: 680px;
+
+        margin: 0 auto;
+
+        text-align: center;
+      }
+
+      .story h1 {
+        font-family: "Libre Caslon Text", serif;
+
+        font-size: 32px;
+        font-weight: 400;
+
+        color: #163422;
+
+        margin: 0 0 28px;
+      }
+
+      .story p {
+        font-family: "Manrope", sans-serif;
+
+        font-size: 17px;
+        line-height: 1.85;
+
+        color: #5e625f;
+
+        margin: 0 0 24px;
+      }
+
+      /* -----------------------------------------
+           Mobile
+        ------------------------------------------ */
+
+      @media (max-width: 650px) {
+        .top-nav-inner {
+          gap: 24px;
+
+          padding: 15px 16px;
+        }
+
+        .nav-link {
+          font-size: 15px;
+        }
+
+        .vine-left {
+          width: 220px;
+
+          left: -55px;
+          bottom: -25px;
+
+          opacity: 0.9;
+        }
+
+        .vine-right {
+          width: 210px;
+
+          right: -50px;
+          top: 52px;
+
+          opacity: 0.9;
+        }
+
+        .content {
+          padding-top: 34px;
+          padding-bottom: 60px;
+        }
+
+        .portrait-frame {
+          max-width: 300px;
+        }
+
+        .dates {
+          font-size: 17px;
+
+          margin-bottom: 38px;
+        }
+
+        .story h1 {
+          font-size: 28px;
+        }
+
+        .story p {
+          font-size: 16px;
+          line-height: 1.8;
+        }
+      }
+      .service-button-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+      }
+
+      .service-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        min-width: 220px;
+
+        padding: 16px 36px;
+
+        background: #163422;
+        color: white;
+
+        font-family: "Manrope", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+
+        letter-spacing: 0.12em;
+
+        text-decoration: none;
+
+        transition: background-color 150ms ease;
+      }
+
+      .service-button:hover {
+        background: #2d4b37;
+      }
+
+      @media (max-width: 650px) {
+        .service-button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="font-sans text-textMain">
+    <!-- Navigation -->
+
+    <header class="top-nav">
+      <nav class="top-nav-inner">
+        <a href="/service.html" class="nav-link"> Service </a>
+        <a href="/" class="nav-link active"> Order of Service </a>
+        <a href="/rsvp.html" class="nav-link"> RSVP </a>
+      </nav>
+    </header>
+
+    <!-- Decorative vines -->
+
+    <img src="/VineLeft.png" alt="" class="vine vine-left" />
+
+    <img src="/VineRight.png" alt="" class="vine vine-right" />
+
+    <main class="content">
+      <!-- Portrait -->
+
+      <div class="portrait-frame">
+        <img src="/ehb.png" alt="Eve Marie Blake" />
+      </div>
+
+      <p class="dates">1942 — 2026</p>
+
+      <!-- Divider -->
+
+      <div class="divider">
+        <div class="divider-line"></div>
+
+        <div class="divider-dot"></div>
+
+        <div class="divider-line"></div>
+      </div>
+
+      <!-- Main obituary -->
+
+      <section class="story">
+        <h1>Eve's Story</h1>
+
+        <p>
+          Born in the quiet spring of 1942, Eve Marie Blake grew up with a
+          profound appreciation for literature and nature. She spent her early
+          years wandering the gardens of her childhood home, cultivating a
+          lifelong passion for botany that she would later share with her
+          children and grandchildren.
+        </p>
+
+        <p>
+          Eve attended the State University, where she studied English
+          Literature. It was there she met her beloved husband, Thomas.
+          Together, they built a home filled with warmth, endless bookshelves,
+          and the smell of fresh baked bread. She was a dedicated teacher for
+          over thirty years, touching the lives of countless students with her
+          patience and wisdom.
+        </p>
+
+        <p>
+          In her later years, Eve found joy in watercolor painting, capturing
+          the delicate beauty of the flowers she so loved. Her gentle spirit,
+          sharp wit, and comforting presence are deeply missed, but her vibrant
+          memory continues to inspire us all.
+        </p>
+      </section>
+      <div class="service-button-wrapper">
+        <a href="/rsvp.html" class="service-button"> RSVP </a>
+      </div>
+    </main>
+  </body>
+</html>
