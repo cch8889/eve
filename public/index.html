@@ -370,6 +370,32 @@
         margin-top: 40px;
       }
 
+      .service-divider {
+        position: relative;
+
+        width: 100%;
+        max-width: 560px;
+        height: 1px;
+
+        margin: 10px auto 30px;
+
+        background: rgba(201, 170, 104, 0.55);
+      }
+
+      .service-divider span {
+        position: absolute;
+
+        width: 10px;
+        height: 10px;
+
+        left: 50%;
+        top: 50%;
+
+        background: #775a19;
+
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
       .rsvp-button {
         display: inline-flex;
         align-items: center;
@@ -524,17 +550,20 @@
       </section>
 
       <!-- Divider -->
-
+      <!-- 
       <div style="margin-bottom: 30px" class="divider">
         <div class="divider-line"></div>
 
         <div class="divider-dot"></div>
 
         <div class="divider-line"></div>
-      </div>
+      </div> -->
 
       <!-- Date first -->
       <section class="service-date">
+        <div class="service-divider" aria-hidden="true">
+          <span></span>
+        </div>
         <div class="detail-text service-intro">
           The family of Eve Marie Blake warmly invite you to join them as they
           come together to remember a life filled with love, laughter and
