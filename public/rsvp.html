@@ -336,7 +336,7 @@
           class="bg-white/95 border border-goldLight px-7 py-8 md:px-12 md:py-11 shadow-[0_8px_30px_rgba(0,0,0,0.04)]"
         >
           <p id="attMsg" class="text-textSoft" style="margin-bottom: 32px">
-            Kindly let us know if you are able to be join us.
+            Please kindly let us know if you are able to be join us.
           </p>
           <form id="rsvpForm" class="space-y-8">
             <!-- Name -->
@@ -381,13 +381,12 @@
               />
             </div>
 
-            <!-- Attendance -->
-
+            <!-- Service attendance -->
             <fieldset>
               <legend
                 class="block text-[12px] font-bold tracking-[0.13em] text-gold mb-4"
               >
-                WILL YOU BE ATTENDING?
+                WILL YOU BE ATTENDING THE SERVICE?
               </legend>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -396,13 +395,13 @@
                 >
                   <input
                     type="radio"
-                    name="attending"
+                    name="serviceAttending"
                     value="yes"
                     class="text-gold border-borderSoft focus:ring-gold"
                     required
                   />
 
-                  <span class="text-[15px] text-textSoft"> Attending </span>
+                  <span class="text-[15px] text-textSoft">Attending</span>
                 </label>
 
                 <label
@@ -410,44 +409,100 @@
                 >
                   <input
                     type="radio"
-                    name="attending"
+                    name="serviceAttending"
                     value="no"
                     class="text-gold border-borderSoft focus:ring-gold"
                     required
                   />
 
-                  <span class="text-[15px] text-textSoft">
-                    Unable to Attend
-                  </span>
+                  <span class="text-[15px] text-textSoft"
+                    >Unable to Attend</span
+                  >
                 </label>
               </div>
             </fieldset>
 
-            <!-- Guest count -->
-
-            <div id="guestSection">
+            <div id="serviceGuestSection" class="hidden">
               <label
-                for="guestCount"
+                for="serviceGuestCount"
                 class="block text-[12px] font-bold tracking-[0.13em] text-gold mb-2"
               >
-                NUMBER ATTENDING
+                NUMBER ATTENDING THE SERVICE
               </label>
 
               <select
                 class="form-input text-textSoft"
-                id="guestCount"
-                name="guestCount"
+                id="serviceGuestCount"
+                name="serviceGuestCount"
               >
                 <option value="1">1 person</option>
-
                 <option value="2">2 people</option>
-
                 <option value="3">3 people</option>
-
                 <option value="4">4 people</option>
-
                 <option value="5">5 people</option>
+                <option value="6">6 people</option>
+              </select>
+            </div>
 
+            <!-- Wake attendance -->
+            <fieldset>
+              <legend
+                class="block text-[12px] font-bold tracking-[0.13em] text-gold mb-4"
+              >
+                WILL YOU BE ATTENDING THE RECEPTION?
+              </legend>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <label
+                  class="attendance-option flex items-center gap-3 cursor-pointer p-4"
+                >
+                  <input
+                    type="radio"
+                    name="wakeAttending"
+                    value="yes"
+                    class="text-gold border-borderSoft focus:ring-gold"
+                    required
+                  />
+
+                  <span class="text-[15px] text-textSoft">Attending</span>
+                </label>
+
+                <label
+                  class="attendance-option flex items-center gap-3 cursor-pointer p-4"
+                >
+                  <input
+                    type="radio"
+                    name="wakeAttending"
+                    value="no"
+                    class="text-gold border-borderSoft focus:ring-gold"
+                    required
+                  />
+
+                  <span class="text-[15px] text-textSoft"
+                    >Unable to Attend</span
+                  >
+                </label>
+              </div>
+            </fieldset>
+
+            <div id="wakeGuestSection" class="hidden">
+              <label
+                for="wakeGuestCount"
+                class="block text-[12px] font-bold tracking-[0.13em] text-gold mb-2"
+              >
+                NUMBER ATTENDING THE RECEPTION
+              </label>
+
+              <select
+                class="form-input text-textSoft"
+                id="wakeGuestCount"
+                name="wakeGuestCount"
+              >
+                <option value="1">1 person</option>
+                <option value="2">2 people</option>
+                <option value="3">3 people</option>
+                <option value="4">4 people</option>
+                <option value="5">5 people</option>
                 <option value="6">6 people</option>
               </select>
             </div>
@@ -502,8 +557,8 @@
               class="text-textSoft leading-7 max-w-sm mx-auto"
               style="display: block; margin-top: 24px"
             >
-              The family kindly request no flowers, instead donations can be
-              made in memory of Eve to<br />
+              The family kindly request no flowers, instead donations in memory
+              of Eve can be made to<br />
               St Margaret’s Hospice.
             </p>
             <!-- <p
@@ -536,10 +591,6 @@
     <script>
       const form = document.getElementById("rsvpForm");
 
-      const guestSection = document.getElementById("guestSection");
-
-      const guestCount = document.getElementById("guestCount");
-
       const submitButton = document.getElementById("submitButton");
 
       const errorMessage = document.getElementById("errorMessage");
@@ -549,23 +600,39 @@
       const successText = document.getElementById("successText");
 
       const attMsg = document.getElementById("attMsg");
+      const serviceGuestSection = document.getElementById(
+        "serviceGuestSection",
+      );
 
-      // --------------------------------------------------
-      // Attendance selection
-      // --------------------------------------------------
+      const serviceGuestCount = document.getElementById("serviceGuestCount");
 
-      document.querySelectorAll('input[name="attending"]').forEach((radio) => {
-        radio.addEventListener("change", () => {
-          const attending = radio.value === "yes";
+      const wakeGuestSection = document.getElementById("wakeGuestSection");
 
-          if (attending) {
-            guestSection.classList.remove("hidden");
-          } else {
-            guestSection.classList.add("hidden");
-          }
+      const wakeGuestCount = document.getElementById("wakeGuestCount");
+
+      document
+        .querySelectorAll('input[name="serviceAttending"]')
+        .forEach((radio) => {
+          radio.addEventListener("change", () => {
+            if (radio.value === "yes") {
+              serviceGuestSection.classList.remove("hidden");
+            } else {
+              serviceGuestSection.classList.add("hidden");
+            }
+          });
         });
-      });
 
+      document
+        .querySelectorAll('input[name="wakeAttending"]')
+        .forEach((radio) => {
+          radio.addEventListener("change", () => {
+            if (radio.value === "yes") {
+              wakeGuestSection.classList.remove("hidden");
+            } else {
+              wakeGuestSection.classList.add("hidden");
+            }
+          });
+        });
       // --------------------------------------------------
       // Submit RSVP
       // --------------------------------------------------
@@ -579,26 +646,37 @@
 
         const phone = document.getElementById("phone").value.trim();
 
-        const attendanceInput = document.querySelector(
-          'input[name="attending"]:checked',
+        const serviceAttendanceInput = document.querySelector(
+          'input[name="serviceAttending"]:checked',
         );
 
-        if (!attendanceInput) {
-          showError("Please let us know whether you will be attending.");
+        const wakeAttendanceInput = document.querySelector(
+          'input[name="wakeAttending"]:checked',
+        );
+
+        if (!serviceAttendanceInput || !wakeAttendanceInput) {
+          showError(
+            "Please let us know whether you will be attending the service and reception.",
+          );
 
           return;
         }
 
-        const attending = attendanceInput.value === "yes";
+        const serviceAttending = serviceAttendanceInput.value === "yes";
+
+        const wakeAttending = wakeAttendanceInput.value === "yes";
 
         const body = {
           familyName,
-
           phone,
 
-          attending,
+          serviceAttending,
+          serviceGuestCount: serviceAttending
+            ? Number(serviceGuestCount.value)
+            : 0,
 
-          guestCount: attending ? Number(guestCount.value) : 0,
+          wakeAttending,
+          wakeGuestCount: wakeAttending ? Number(wakeGuestCount.value) : 0,
         };
 
         try {
@@ -627,11 +705,11 @@
 
           successMessage.classList.remove("hidden");
 
-          if (attending) {
+          if (serviceAttending || wakeAttending) {
             successText.textContent =
               "We look forward to seeing you as we remember and celebrate Eve.";
           } else {
-            successText.innerHTML = "We have recieved your RSVP.";
+            successText.textContent = "We have received your RSVP.";
           }
         } catch (error) {
           showError(error.message || "Something went wrong. Please try again.");

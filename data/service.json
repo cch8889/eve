@@ -2,39 +2,38 @@
   "title": "Order of Service",
   "items": [
     {
-      "time": "10:00 AM",
-      "title": "Lorem Ipsum",
-      "description": "Lorem ipsum dolor sit amet"
+      "title": "Entrance Music",
+      "description": "Memories – Maroon 5"
     },
     {
-      "time": "10:10 AM",
-      "title": "Dolor Sit Amet",
-      "description": "Consectetur adipiscing elit"
+      "title": "Welcome"
     },
     {
-      "time": "10:20 AM",
-      "title": "Consectetur Adipiscing",
-      "description": "Lorem ipsum dolor sit amet",
-      "italic": true
+      "title": "Eulogy",
+      "description": "Read by Mark"
     },
     {
-      "time": "10:30 AM",
-      "title": "Lorem Ipsum Dolor",
-      "description": "Sed do eiusmod tempor incididunt"
+      "title": "Frank’s Words",
+      "description": "In Memory of Our Beloved Eve Marie Blake"
     },
     {
-      "time": "10:45 AM",
-      "title": "Adipiscing Elit",
-      "description": "Ut labore et dolore magna aliqua"
+      "title": "Reflection & Photo Tribute",
+      "description": "When You Run Out of Tears – Ruxley"
     },
     {
-      "time": "11:00 AM",
-      "title": "Eiusmod Tempor",
-      "description": "Lorem ipsum dolor sit amet"
+      "title": "Penny’s Poem",
+      "description": "Read by Mac"
     },
     {
-      "time": "11:15 AM",
-      "title": "Lorem Ipsum"
+      "title": "Musical Tribute",
+      "description": "Footprints in the Sand – Alishia"
+    },
+    {
+      "title": "Closing Words"
+    },
+    {
+      "title": "Exit Music",
+      "description": "Top of the World – The Carpenters"
     }
   ]
 }

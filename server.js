@@ -83,7 +83,14 @@ app.get("/", (req, res) => {
 
 app.post("/api/rsvp", async (req, res) => {
   try {
-    const { familyName, phone, attending, guestCount } = req.body;
+    const {
+      familyName,
+      phone,
+      serviceAttending,
+      serviceGuestCount,
+      wakeAttending,
+      wakeGuestCount,
+    } = req.body;
 
     // --------------------------
     // Validation
@@ -91,7 +98,7 @@ app.post("/api/rsvp", async (req, res) => {
 
     if (!familyName?.trim()) {
       return res.status(400).json({
-        error: "Family name is required",
+        error: "Full name is required",
       });
     }
 
@@ -101,20 +108,41 @@ app.post("/api/rsvp", async (req, res) => {
       });
     }
 
-    if (typeof attending !== "boolean") {
+    if (typeof serviceAttending !== "boolean") {
       return res.status(400).json({
-        error: "Attending must be true or false",
+        error: "Service attendance must be true or false",
       });
     }
 
-    let count = 0;
+    if (typeof wakeAttending !== "boolean") {
+      return res.status(400).json({
+        error: "Wake attendance must be true or false",
+      });
+    }
 
-    if (attending) {
-      count = Number(guestCount);
+    let serviceCount = 0;
+    let wakeCount = 0;
 
-      if (!Number.isInteger(count) || count < 1 || count > 20) {
+    if (serviceAttending) {
+      serviceCount = Number(serviceGuestCount);
+
+      if (
+        !Number.isInteger(serviceCount) ||
+        serviceCount < 1 ||
+        serviceCount > 20
+      ) {
         return res.status(400).json({
-          error: "Guest count must be between 1 and 20",
+          error: "Service guest count must be between 1 and 20",
+        });
+      }
+    }
+
+    if (wakeAttending) {
+      wakeCount = Number(wakeGuestCount);
+
+      if (!Number.isInteger(wakeCount) || wakeCount < 1 || wakeCount > 20) {
+        return res.status(400).json({
+          error: "Wake guest count must be between 1 and 20",
         });
       }
     }
@@ -165,8 +193,11 @@ app.post("/api/rsvp", async (req, res) => {
       familyName: familyName.trim(),
       phone: phone.trim(),
 
-      attending,
-      guestCount: attending ? count : 0,
+      serviceAttending,
+      serviceGuestCount: serviceAttending ? serviceCount : 0,
+
+      wakeAttending,
+      wakeGuestCount: wakeAttending ? wakeCount : 0,
 
       createdAt,
       updatedAt: now,
@@ -178,7 +209,9 @@ app.post("/api/rsvp", async (req, res) => {
     });
 
     console.log(
-      `RSVP saved: ${familyName} - ${attending ? "attending" : "not attending"}`,
+      `RSVP saved: ${familyName} - Service: ${
+        serviceAttending ? `${serviceCount}` : "No"
+      }, Wake: ${wakeAttending ? `${wakeCount}` : "No"}`,
     );
 
     return res.status(200).json({
@@ -267,8 +300,10 @@ app.post("/api/admin/export-rsvps", async (req, res) => {
     const headers = [
       "Family Name",
       "Phone",
-      "Attending",
-      "Number Attending",
+      "Service Attending",
+      "Service Number Attending",
+      "Wake Attending",
+      "Wake Number Attending",
       "Created",
       "Last Updated",
     ];
@@ -276,8 +311,13 @@ app.post("/api/admin/export-rsvps", async (req, res) => {
     const rows = rsvps.map((rsvp) => [
       rsvp.familyName,
       rsvp.phone,
-      rsvp.attending ? "Yes" : "No",
-      rsvp.guestCount,
+
+      rsvp.serviceAttending ? "Yes" : "No",
+      rsvp.serviceGuestCount,
+
+      rsvp.wakeAttending ? "Yes" : "No",
+      rsvp.wakeGuestCount,
+
       rsvp.createdAt,
       rsvp.updatedAt,
     ]);

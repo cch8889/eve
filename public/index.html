@@ -204,7 +204,7 @@
         width: 100%;
         max-width: 390px;
 
-        margin: 0 auto 38px;
+        margin: 0 auto 16px;
 
         padding: 8px;
 
@@ -385,7 +385,7 @@
 
         font-family: "Manrope", sans-serif;
 
-        font-size: 13px;
+        font-size: 20px;
         font-weight: 700;
 
         letter-spacing: 0.12em;
@@ -457,12 +457,6 @@
           font-size: 18px;
         }
 
-        .portrait-frame {
-          max-width: 300px;
-
-          margin-bottom: 32px;
-        }
-
         .memorial-heading .intro {
           font-size: 18px;
         }
@@ -480,6 +474,10 @@
         .rsvp-button {
           width: 100%;
         }
+      }
+      .service-intro {
+        max-width: 420px;
+        margin: 0 auto 18px;
       }
     </style>
   </head>
@@ -510,32 +508,24 @@
     --------------------------------------------------- -->
 
     <main class="content">
-      <!-- Date first -->
-
-      <!-- Portrait -->
-
-      <div class="portrait-frame">
-        <img src="/ehb.png" alt="Eve Marie Blake" />
-      </div>
-      <section class="service-date">
-        <div class="service-date-label">Service</div>
-
-        <div class="service-date-value">
-          Thursday, 27th August 2026 at 4:00pm
-        </div>
-      </section>
-
       <!-- Heading -->
-
       <section class="memorial-heading">
         <p class="intro">Celebrating the life of</p>
 
         <h1>Eve Marie Blake</h1>
       </section>
+      <!-- Portrait -->
+      <div class="portrait-frame">
+        <img src="/ehb.png" alt="Eve Marie Blake" />
+      </div>
+
+      <section class="memorial-heading">
+        <h2 style="font-size: 28px; margin-bottom: 8px">1970-2026</h2>
+      </section>
 
       <!-- Divider -->
 
-      <div class="divider">
+      <div style="margin-bottom: 30px" class="divider">
         <div class="divider-line"></div>
 
         <div class="divider-dot"></div>
@@ -543,11 +533,21 @@
         <div class="divider-line"></div>
       </div>
 
+      <!-- Date first -->
+      <section class="service-date">
+        <div class="detail-text service-intro">
+          The family of Eve Marie Blake warmly invite you to join them as they
+          come together to remember a life filled with love, laughter and
+          cherished memories on <br />
+          Thursday, 27th August 2026.
+        </div>
+      </section>
+
       <!-- Service / reception details -->
 
       <section class="details">
         <div class="detail-section">
-          <h2 class="detail-title">SERVICE TO BE HELD AT</h2>
+          <h2 class="detail-title">SERVICE TO BE HELD AT 4:00PM</h2>
 
           <p class="detail-text">
             Yeovil Crematorium<br />
@@ -566,7 +566,7 @@
         </div>
 
         <div class="detail-section">
-          <h2 class="detail-title">FOLLOWED BY RECEPTION AT</h2>
+          <h2 class="detail-title">A RECEPTION WILL FOLLOW AT</h2>
 
           <p class="detail-text">
             The Sherborne House<br />
